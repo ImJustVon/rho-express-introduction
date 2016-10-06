@@ -35,7 +35,7 @@ app.post('/songs', function(req, res) {
 	});
 	console.log(repeat);
 	console.log('req.body:', req.body);
-	if (req.body.title == '' || req.body.artist == '') {
+	if (req.body.title.trim() == '' || req.body.artist.trim() == '') {
 		res.sendStatus(403);
 	} else if (repeat) {
 		res.sendStatus(409);
@@ -49,7 +49,7 @@ app.post('/songs', function(req, res) {
 app.post('/songs/delete', function(req, res) {
 	var body = req.body;
 	console.log(body);
-	songs.splice(body.index, body.index + 1);
+	songs.splice(body.index, 1);
 	console.log(songs);
 	res.sendStatus(200);
 })
